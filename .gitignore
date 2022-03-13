@@ -1,0 +1,13 @@
+
+
+node_modules
+npm-debug.log*
+pids
+reports
+screenshots
+target
+**/aggregated-translations/*.*
+lib
+props-table
+.DS_Store
+.vscode/
