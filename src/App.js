@@ -5,7 +5,7 @@ import Cards from './Cards';
 import axios from 'axios';
 import AddCategoriesModal from './AddCategoriesModal';
 import mockData from './mockData.json'
-import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, API_REQUEST_LIMIT_STATUS_CODE } from './constants';
+import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, API_REQUEST_LIMIT_STATUS_CODE, API_REQUEST_GIT_CORS_STATUS_CODE } from './constants';
 
 
 const  App = () => {
@@ -55,7 +55,7 @@ const  App = () => {
     })
     .catch(function (error) {
       if(error){
-        if(error.response.status === API_REQUEST_LIMIT_STATUS_CODE) {
+        if(error.response.status === API_REQUEST_LIMIT_STATUS_CODE || error.response.status === API_REQUEST_GIT_CORS_STATUS_CODE) {
           // use mock data due to limited no of api requests 
           updateFixedArticles(mockData.articles);
           updateArticles(mockData.articles);
