@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Cards from './Cards';
 import axios from 'axios';
 import AddCategoriesModal from './AddCategoriesModal';
-import mockData from './mockData.json'
-import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, API_REQUEST_LIMIT_STATUS_CODE, API_REQUEST_GIT_CORS_STATUS_CODE } from './constants';
+import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, URL_NOT_FOUND } from './constants';
 
 
 const  App = () => {
@@ -22,6 +21,17 @@ const  App = () => {
   useEffect(() => {
     fetchArticles(defaultCategory.apiUrl);
   }, []);
+
+  // close modal on escape key
+  useEffect(() => {
+    const close = (e) => {
+      if(e.keyCode === 27){
+        showModal(false)
+      }
+    }
+    window.addEventListener('keydown', close)
+  return () => window.removeEventListener('keydown', close)
+},[])
 
 
   const handleCategories = (categoryName, apiUrl, action)=> {
@@ -45,23 +55,23 @@ const  App = () => {
     updateArticles(filteredCategories)
   }
 
-
+  let errorMessage = 'Something went wrong, please try again later';
   const fetchArticles = (url) => {
+    try{
     axios.get(
       url,
     ).then(response => {
       updateArticles(response.data.articles);
       updateFixedArticles(response.data.articles);
-    })
-    .catch(function (error) {
-      if(error){
-        if(error.response.status === API_REQUEST_LIMIT_STATUS_CODE || error.response.status === API_REQUEST_GIT_CORS_STATUS_CODE) {
-          // use mock data due to limited no of api requests 
-          updateFixedArticles(mockData.articles);
-          updateArticles(mockData.articles);
-        }        
+    }).catch(error =>{
+      if (errorMessage.response.status === URL_NOT_FOUND) {
+        throw new Error(`${errorMessage.config.url} not found`);
       }
-    })
+      throw error;
+    });
+  } catch (error){
+    errorMessage = error;
+  }
   };
 
   return (
@@ -101,7 +111,7 @@ const  App = () => {
             autoComplete="off"
           />
         </div>
-        {articles !== undefined && <Cards articleData={articles} /> }
+        {articles !== undefined ? <Cards articleData={articles} /> : <h2>{errorMessage}</h2> }
           <AddCategoriesModal showModal={isModalOpen} updateCategories={handleCategories}/>
       </div>
   );
