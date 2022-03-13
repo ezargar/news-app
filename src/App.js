@@ -1,28 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 import search from './search.svg';
 import React, { useState, useEffect } from 'react';
-import 'google-fonts';
-// import eliyas from './images/eliyas.png';
 import Cards from './Cards';
 import axios from 'axios';
-import Modal from './Modal/AddCategoriesModal';
+import AddCategoriesModal from './AddCategoriesModal';
 import mockData from './mockData.json'
+import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, API_REQUEST_LIMIT_STATUS_CODE } from './constants';
 
 
 const  App = () => {
-  const [article, updateArticle] = useState();
+  const [articles, updateArticles] = useState();
   const defaultCategory = {
-    categoryName : 'TechCrunch',
-    apiUrl: 'https://newsapi.org/v2/everything?q=TechCrunch&from=2022-02-11&sortBy=publishedAt&apiKey=a5cf886a8dd84801a01c8b5bd0da1b0d',
+    categoryName : DEAFULT_CATEGORY_NAME,
+    apiUrl: DEAFULT_API_URL,
   }
   const [categories, updateCategories] = useState([defaultCategory]);
   const [fixedArticles, updateFixedArticles] = useState();
-  const [show, setShow] = useState(false);
-  const [currentCategory, updateCurrentCategory] = useState('TechCrunch');
+  const [isModalOpen, showModal] = useState(false);
+  const [currentCategory, updateCurrentCategory] = useState(DEAFULT_CATEGORY_NAME);
 
   useEffect(() => {
-    getArticles(defaultCategory.apiUrl);
+    fetchArticles(defaultCategory.apiUrl);
   }, []);
 
 
@@ -31,41 +29,44 @@ const  App = () => {
       categoryName,
       apiUrl
     }
-    if(!action && categories && categories.length < 5){
+    if(!action && categories && categories.length < CATEGORIES_LIMIT){
       updateCategories(prevCategories => [...prevCategories, categoriesSelected]);
     }  
-    getArticles(apiUrl);
-    setShow(false);
+    fetchArticles(apiUrl);
+    showModal(false);
     updateCurrentCategory(categoryName)
   }
 
 
-  const handleLiveSearch = (value)=>{
-    let arr = fixedArticles.filter((obj) => Object.values(obj).some((val) => {
-      return typeof val === 'string' && val.toLocaleLowerCase().includes(value.toLocaleLowerCase())
-    }))
-    updateArticle(arr)
+  const handleLiveSearch = (userInput)=>{
+    const filteredCategories = fixedArticles.filter((categories) => Object.values(categories).some((category) => 
+       typeof category === 'string' && category.toLocaleLowerCase().includes(userInput.toLocaleLowerCase())
+    ))
+    updateArticles(filteredCategories)
   }
 
 
-  const getArticles = (url) => {
+  const fetchArticles = (url) => {
     axios.get(
       url,
     ).then(response => {
-      updateArticle(response.data.articles);
+      updateArticles(response.data.articles);
       updateFixedArticles(response.data.articles);
     })
     .catch(function (error) {
       if(error){
-        // use mock data due to limited no of api requests 
-        updateFixedArticles(mockData.articles);
-        updateArticle(mockData.articles);
+        if(error.response.status === API_REQUEST_LIMIT_STATUS_CODE) {
+          // use mock data due to limited no of api requests 
+          updateFixedArticles(mockData.articles);
+          updateArticles(mockData.articles);
+        }        
       }
     })
   };
+
   return (
       <div
-        className="news-app"
+        className="news-app-dash"
       >
          <div
         className="title"
@@ -76,13 +77,13 @@ const  App = () => {
       >
         News Today
         </div>
-        <div style={{ marginTop: '30px', display: 'flex', width: '60%' }}>
-          {categories.map((value)=>(
-            <button className={value.categoryName === currentCategory && !show ? "button-style" : "disable-button" } onClick={()=>handleCategories(value.categoryName, value.apiUrl, "toggle")}>{value.categoryName}</button>
+        <div className='category-buttons'>
+          {categories.map((value, index)=>(
+            <button key={`category-button${index}`} className={value.categoryName === currentCategory && !isModalOpen ? "category-button-style" : "disable-category-button" } onClick={()=>handleCategories(value.categoryName, value.apiUrl, "toggle")}>{value.categoryName}</button>
           ))}
-          <button className={show? "button-style" : "disable-button"} disabled={!(categories.length < 5)}  onClick={() => setShow(true)}>+</button>
+          <button className={isModalOpen? "category-button-style" : "disable-category-button"} disabled={!(categories.length < 5)}  onClick={() => showModal(true)}>+</button>
         </div>
-        <div className="searchBar">
+        <div className="search-bar">
           <svg
             xmlns={search}
             viewBox="0 -13 10 50"
@@ -93,15 +94,15 @@ const  App = () => {
             <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
           </svg>
           <input
-            className="input-box"
+            className="live-search-box"
             type="text"
             onChange={(event)=> handleLiveSearch(event.target.value)}
             placeholder="Search for keywords, author"
             autoComplete="off"
           />
         </div>
-        {article !== undefined && <Cards articleData={article} /> }
-          <Modal showModal={show} updateCategories={handleCategories}/>
+        {articles !== undefined && <Cards articleData={articles} /> }
+          <AddCategoriesModal showModal={isModalOpen} updateCategories={handleCategories}/>
       </div>
   );
 }

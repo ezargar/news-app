@@ -1,8 +1,9 @@
 import React from "react";
 import './App.css';
 
-
-
+/*
+Fetch card with category details
+*/
 const Cards = ({articleData}) => {
     const myStyle={
         marginLeft: "75%",
@@ -17,8 +18,7 @@ const Cards = ({articleData}) => {
 
     return(articleData.map(
             (article) => (
-                // <div class="col-3 col-s-12">
-        <div className="newsCards">
+        <div className="news-cards" key={article.title}>
           <div style={{ float: 'left' }}>
             <div className="card-title">
              {article.title}
@@ -36,9 +36,8 @@ const Cards = ({articleData}) => {
               {article.description}
             </div>
           </div>
-          <div style={{ background: `transparent url(${article.urlToImage}) 10% 30% no-repeat padding-box`,  backgroundSize: "250px", ...myStyle}} />
+          <div className="card-image" style={{ background: `transparent url(${article.urlToImage}) 10% 30% no-repeat padding-box`,  backgroundSize: "250px", ...myStyle}} />
         </div>
-        // </div>
             ),
           )     
     )

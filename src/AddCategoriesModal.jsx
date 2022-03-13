@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { BsPlusLg } from "react-icons/bs" 
-import './AddCategoriesModal.css';
 
-const Modal = ({showModal, updateCategories}) => {
+
+/*
+Open Add Categories Modal 
+*/
+
+const AddCategoriesModal = ({showModal, updateCategories}) => {
   const [categoryName, updateCategory] = useState();
   const [apiUrl, updateAPI] = useState();
 
@@ -49,4 +53,4 @@ const Modal = ({showModal, updateCategories}) => {
   )
 };
 
-export default Modal;
+export default AddCategoriesModal;
