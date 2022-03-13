@@ -64,18 +64,19 @@ const  App = () => {
     })
   };
   return (
-    <div className="background">
       <div
+        className="news-app"
+      >
+         <div
         className="title"
         style={{
-          top: '41px',
-          left: '338px',
           width: '216px',
           height: '53px',
         }}
       >
         News Today
-        <div style={{ marginTop: '30px', display: 'flex', width: '690px' }}>
+        </div>
+        <div style={{ marginTop: '30px', display: 'flex', width: '60%' }}>
           {categories.map((value)=>(
             <button className={value.categoryName === currentCategory && !show ? "button-style" : "disable-button" } onClick={()=>handleCategories(value.categoryName, value.apiUrl, "toggle")}>{value.categoryName}</button>
           ))}
@@ -97,15 +98,11 @@ const  App = () => {
             onChange={(event)=> handleLiveSearch(event.target.value)}
             placeholder="Search for keywords, author"
             autoComplete="off"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
           />
         </div>
         {article !== undefined && <Cards articleData={article} /> }
           <Modal showModal={show} updateCategories={handleCategories}/>
       </div>
-    </div>
   );
 }
 

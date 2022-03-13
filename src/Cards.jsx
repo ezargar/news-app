@@ -5,9 +5,9 @@ import './App.css';
 
 const Cards = ({articleData}) => {
     const myStyle={
-        marginLeft: "520px",
-        width: "146px",
-        height: "146px",
+        marginLeft: "75%",
+        width: "23%",
+        height: "80%",
         borderRadius: "9px",
         opacity: 1,
         marginTop: "26px",
@@ -17,7 +17,7 @@ const Cards = ({articleData}) => {
 
     return(articleData.map(
             (article) => (
-                <div class="col-3 col-s-12">
+                // <div class="col-3 col-s-12">
         <div className="newsCards">
           <div style={{ float: 'left' }}>
             <div className="card-title">
@@ -38,7 +38,7 @@ const Cards = ({articleData}) => {
           </div>
           <div style={{ background: `transparent url(${article.urlToImage}) 10% 30% no-repeat padding-box`,  backgroundSize: "250px", ...myStyle}} />
         </div>
-        </div>
+        // </div>
             ),
           )     
     )
