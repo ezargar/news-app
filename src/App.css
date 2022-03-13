@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
 
 .title {
+  margin-bottom: 30px;
   width: auto;
   text-align: left;
   font: normal normal 900 40px/53px Roboto;
