@@ -64,7 +64,7 @@ const  App = () => {
       updateArticles(response.data.articles);
       updateFixedArticles(response.data.articles);
     }).catch(error =>{
-      if (errorMessage.response.status === URL_NOT_FOUND) {
+      if (error.response.status === URL_NOT_FOUND) {
         throw new Error(`${errorMessage.config.url} not found`);
       }
       throw error;
