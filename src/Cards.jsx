@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import moment from 'moment';
 
 /*
 Fetch card with category details
@@ -29,7 +30,7 @@ const Cards = ({articleData}) => {
               </span>
               <span className="divider" />
               <span>
-               {article.publishedAt}
+               {article.publishedAt ? moment(article.publishedAt).format('YYYY-MM-DD hh:mm a') : ''}
               </span>
             </div>
             <div className="card-description">
