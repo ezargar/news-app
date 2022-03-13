@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.background {
+width: 1366px;
+height: 100vh;
+background: #FAFAFA 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+
+.title {
+text-align: left;
+font: normal normal 900 40px/53px Roboto;
+letter-spacing: 0px;
+position: absolute;
+color: #000000;
+opacity: 1;
+}
+
+.button-style{
+  padding: 5px 20px 5px 20px;
+  background: #00F0C2 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  border-color: #fff;
+	border-style: solid;
+  opacity: 1;
+  margin-right: 10px;
+  font: normal normal 500 12px/19px Roboto;
+}
+.disable-button{
+  padding: 5px 20px 5px 20px;
+  background: #EAEAEA 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  border-color: #fff;
+	border-style: solid;
+  opacity: 1;
+  margin-right: 10px;
+  letter-spacing: 0px;
+  font: normal normal 500 12px/19px Roboto;
+  color: #7E7E7E;
+}
+
+.text {
+  
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.searchBar{
+margin-top: 20px;
+width: 690px;
+height: 40px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 0px 16px #00000010;
+border: 1px solid #E5E5E5;
+border-radius: 20px;
+opacity: 1;
+display: flex;
+}
+
+.input-box {
+  opacity: 1;
+  width: 400px;
+  height: 19px;
+  /* margin-left: 30px; */
+  margin-top: 10px;
+  padding: 0;
+border: none;
+background: none;
+outline: none;
+}
+
+.input-icons i {
+  position: absolute;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 10px;
+  color: green;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  /* &:before {
+    content: url("https://www.prospectsoft.com/images/security/shield2.svg");
+  } */
+}
+
+.newsCards {
+  width: 80%;
+  height: 70%;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 16px #00000010;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  opacity: 1;
+  margin-top: 14px;
+  float: left;
+}
+
+.card-title {
+margin-top: 26px;
+margin-left: 30px;
+margin-right: 221px;
+width: 439px;
+height: 42px;
+/* UI Properties */
+text-align: left;
+font: normal normal bold 16px/21px Roboto;
+letter-spacing: 0px;
+color: #212121;
+opacity: 1;
+overflow: scroll;
+}
+
+.card-user-details{
+  margin-top: 4px;
+  margin-left: 30px;
+  width: 439px;
+  height: 16px;
+  text-align: left;
+  font: normal normal normal 12px/16px Roboto;
+  letter-spacing: 0px;
+  color: #989898;
+  opacity: 1;
+}
+
+.divider {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  width: 1px;
+  height: 1px;
+  border: 1px solid #989898;
+  opacity: 1;
+  background: #989898 0% 0% no-repeat padding-box;
+  border-radius: 50%;
+  display: inline-block
+}
+
+.card-description {
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 452px;
+  height: 76px;
+  text-align: left;
+  font: normal normal 400 14px/19px Roboto;
+  letter-spacing: 0px;
+  color: #393939;
+  opacity: 1;
+  
+}
+
+
+.card-image {
+  margin-left: "520px";
+  width: "146px";
+  height: "146px";
+  border-radius: "9px";
+  opacity: 1;
+}
+
+
+.modal-content {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 16px #00000010;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  opacity: 1;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  background-color: rgba(128,128,128,0.5);
+  display: none; 
+}
+
+.modal-attr {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  width: 690px;
+  height: 417px;
+  transform: translate(-50%,-50%);
+  background-color: white;
+  opacity: 1;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 16px #00000010;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  opacity: 1;
+}
+
+.add-category{
+  margin-top: 57px;
+  margin-left: 64px;
+  width: 150px;
+  height: 32px;
+  /* UI Properties */
+  text-align: left;
+  font: normal normal 900 24px/32px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.input-category-box{
+  width: 557px;
+  margin-top: 64px;
+  margin-left: 64px;
+  height: 35px;
+  text-align: left;
+  font: normal normal normal 14px/19px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  outline: none;
+}
+
+.add-category-button {
+  width: 81px;
+  height: 32px;
+  background-color: #ddd;
+  border: none;
+  color: rgb(243, 239, 239);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 64px;
+  margin-top: 40px;
+  cursor: pointer;
+  background: #000000 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+
+span.icon {
+  color: #ddd;
+  padding: 5px;
+}
+
+.button-text {
+  margin-left: 5px;
+  font: normal normal 500 14px/19px Roboto;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
