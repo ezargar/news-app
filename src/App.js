@@ -59,7 +59,7 @@ const  App = () => {
   const fetchArticles = (url) => {
     try{
     axios.get(
-      url,
+      url,{ crossdomain: true }
     ).then(response => {
       updateArticles(response.data.articles);
       updateFixedArticles(response.data.articles);
