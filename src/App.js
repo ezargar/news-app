@@ -68,8 +68,8 @@ const  App = () => {
       if (error.response.status === URL_NOT_FOUND) {
         throw new Error(`${errorMessage.config.url} not found`);
       } else if(error.response.status === API_REQUEST_GIT_CORS_STATUS_CODE) {
-        updateArticles(mockData);
-        updateFixedArticles(mockData)
+        updateArticles(mockData.articles);
+        updateFixedArticles(mockData.articles)
       }
       throw error;
     });
