@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Cards from './Cards';
 import axios from 'axios';
 import AddCategoriesModal from './AddCategoriesModal';
-import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, URL_NOT_FOUND } from './constants';
+import { CATEGORIES_LIMIT, DEAFULT_API_URL, DEAFULT_CATEGORY_NAME, URL_NOT_FOUND, API_REQUEST_GIT_CORS_STATUS_CODE } from './constants';
+import mockData from './mockData.json';
 
 
 const  App = () => {
@@ -66,6 +67,9 @@ const  App = () => {
     }).catch(error =>{
       if (error.response.status === URL_NOT_FOUND) {
         throw new Error(`${errorMessage.config.url} not found`);
+      } else if(error.response.status === API_REQUEST_GIT_CORS_STATUS_CODE) {
+        updateArticles(mockData);
+        updateFixedArticles(mockData)
       }
       throw error;
     });
